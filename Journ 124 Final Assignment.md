@@ -1,7 +1,5 @@
 # **Berkeley’s 2014 Payroll Was Split Between Seasonal Workers and High-Cost Public Safety Roles**
 
-# 
-
 A look at 2,217 City of Berkeley paychecks from 2014 shows a payroll split in two: a large, low paid seasonal workforce on one side, and a smaller group of six figure public safety earners on the other.
 
 **Spreadsheets Link**  
@@ -9,8 +7,6 @@ A look at 2,217 City of Berkeley paychecks from 2014 shows a payroll split in tw
 
 **Data Source**  
 City of Berkeley, *City of Berkeley Employee Salaries – 2014*, City of Berkeley Open Data Portal (Socrata), dataset ID rphs-8dfw. Accessed July 5, 2026\. [https://data.cityofberkeley.info/Economic-Data/City-of-Berkeley-Employee-Salaries-2014/rphs-8dfw/about\_data](https://data.cityofberkeley.info/Economic-Data/City-of-Berkeley-Employee-Salaries-2014/rphs-8dfw/about_data)
-
-## 
 
 # **Where the data comes from**
 
@@ -26,8 +22,6 @@ A few specific integrity questions shaped how I read the file:
 * The agencies self report. Transparent California relies on each city to hand over accurate, complete records, and notes that some agencies withhold names or details. I have no independent way to audit Berkeley's submission.  
 * Timing. Values are annual, but some agencies report on a fiscal year and some on a calendar year, which can shift where a paycheck lands.
 
-## 
-
 # **Data analysis**
 
 The raw file needed three fixes before anything would calculate:
@@ -35,8 +29,6 @@ The raw file needed three fixes before anything would calculate:
 1. The pay columns imported as text. Every dollar figure carried a $ and comma separators, which Google Sheets can read as words instead of numbers. On import I set "Convert text to numbers" to Yes, then confirmed each pay column was right aligned. Where a column stayed as text, I used Find and replace to strip the $ and commas so the values became real numbers I could sum and average.  
 2. Three columns carried no information. Year was 2014 for every row, Agency was Berkeley for every row, and Notes was empty for all 2,217 rows. I set them aside.  
 3. Two rows were anomalies. One employee showed a negative total of about minus 1,200 dollars, most likely a payroll correction, and one showed a total of zero. I filtered both out of the aggregate math and note them here rather than hiding them. That leaves 2,215 clean records.
-
-### 
 
 **Pivot Tables**
 
@@ -51,8 +43,6 @@ Rows are Job Title again, but the value is the SUM of Total Pay and Benefits, so
 **Pivot 3: overtime by job title** 
 
 Rows are Job Title, and the value is the SUM of Overtime Pay, sorted high to low. This isolates one specific slice of pay to answer "where does the city's overtime money actually go." Police Officer leads at about 1.71 million dollars in overtime alone, followed by Police Sergeant near 767,000 and Fire Apparatus Operator near 643,000, with dispatchers and solid waste workers also near the top. This is the pivot that supports the most interesting argument in the story, because heavy overtime usually points to understaffing or mandatory coverage rather than simple generosity. It’s clear that overtime is heavily concentrated in a few public safety roles.
-
-## 
 
 # **Visuals**
 
